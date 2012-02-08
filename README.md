@@ -30,7 +30,7 @@ Chat Application, responding to SCA requirements.
                  
 ##LICENCES
 
-* The lib is available under MIT Licence :
+* The application is available under MIT Licence :
 http://www.opensource.org/licenses/MIT
 
 * ![BY](http://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Cc-by_new_white.svg/48px-Cc-by_new_white.svg.png "BY")
