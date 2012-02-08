@@ -1,5 +1,5 @@
 Demonstrator of composition of heterogeneous services with SCA: Chat SCA
-=======================================================================
+========================================================================
 
 
 ##Description
@@ -9,14 +9,15 @@ Chat SCA application is our main heterogeneity demonstrator. It’s an applicati
 ##Architecture
 
 The architecture of the application is described as below:
-1.  Chat server composite: includes 3 components
-+  Messages Manager: implemented in Java, provides messages management services that are exposed over Java RMI to the client
-+  Users Manager: implemented in python, provides users management services that are exposed under JSON-RPC to the administration component and a connection/disconnection service to the client under SOA protocol.
-+  Administration component: written in JavaScript. It’s a web based application that adds, removes members to/from the chat room.
-2.  Moderation Unit: includes 2 EJB components that are deployed in their EJB Container (Apache OpenEJB)
-+  ModerationStarImplRemote: a component that removes bad words and substitute them by stars (*)
-+  ModerationSubsImplRemote: a component that substitutes the SMS/Geek words by conventional words. 
-3.  Client: A client written in Java that uses 4 references of services: messages manager, users’ manager, and the 2 components of the moderation unit.
+
+* **Chat server composite**: includes 3 components
+    *  *Messages Manager*: implemented in Java, provides messages management services that are exposed over Java RMI to the client
+    *  *Users Manager*: implemented in python, provides users management services that are exposed under JSON-RPC to the administration component   and a connection/disconnection service to the client under SOA protocol.
+    *  *Administration component*: written in JavaScript. It’s a web based application that adds, removes members to/from the chat room.
+*  *Moderation Unit*: includes 2 EJB components that are deployed in their EJB Container (Apache OpenEJB)
+    *  *ModerationStarImplRemote*: a component that removes bad words and substitute them by stars (*)
+    *  *ModerationSubsImplRemote*: a component that substitutes the SMS/Geek words by conventional words. 
+*  **Client**: A client written in Java that uses 4 references of services: messages manager, users’ manager, and the 2 components of the moderation unit.
  
 
 ##run
@@ -44,11 +45,11 @@ It is imperative that you respect the order which follows:
     `cd $VOTRE_WORKSPACE/ChatSCA_V2.2.1/SCAClient`
 7. `ant`
 8. Copy the following link to your browser:
-    localhost:8080/webadmin/
+    `localhost:8080/webadmin/`
 9. Connect as administrator through this web panel:
     Username: admin
     password: admin
-    (customizable in file admin.txt )
+    (customizable in file *admin.txt* )
 10. Add users as required.
 
 11. Connect in the Client application with the user name and password you added 
