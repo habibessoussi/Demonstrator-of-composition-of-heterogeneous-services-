@@ -38,26 +38,14 @@ It is imperative that you respect the order which follows:
 
 ###Installation
 1. Bien positionner la variable d'environnement TUSCANY_HOME
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-2. cd $YOUR_WORKSPACE/ChatSCA_V3.1/ChatServer
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-3. ant
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2. `cd $YOUR_WORKSPACE/ChatSCA_V3.1/ChatServer`
+3. `ant`
 4. (new terminal)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   cd $YOUR_WORKSPACE/ChatSCA_V3.1/ModerationUnit
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   
-5. ant compile run
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+`cd $YOUR_WORKSPACE/ChatSCA_V3.1/ModerationUnit`
+5. `ant compile run`
 6. (new terminal)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    cd $VOTRE_WORKSPACE/ChatSCA_V2.2.1/SCAClient
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-7. ant
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    `cd $VOTRE_WORKSPACE/ChatSCA_V2.2.1/SCAClient`
+7. `ant`
 8. Copy the following link to your browser:
     localhost:8080/webadmin/
 9. Connect as administrator through this web panel:
@@ -74,10 +62,6 @@ It is imperative that you respect the order which follows:
 
 ###clean
 
-You have just to write 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-ant clean
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-at the level of each of these directories: ChatServer, ModerationUnit and SCAClient
+You have just to write `ant clean` at the level of each of these directories: ChatServer, ModerationUnit and SCAClient.
 
 
