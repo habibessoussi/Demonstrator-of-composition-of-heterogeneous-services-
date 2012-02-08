@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<composite xmlns="http://www.osoa.org/xmlns/sca/1.0" xmlns:t="http://tuscany.apache.org/xmlns/sca/1.0"
+	xmlns:c="http://chatclient/" xmlns:tuscany="http://tuscany.apache.org/xmlns/sca/1.0"
+	targetNamespace="http://chatclient/" name="client">
+
+	<component name="ClientComponent">
+		<implementation.java class="sca.client.ChatClient" />
+
+		<reference name="hp">
+			<binding.ws uri="http://localhost:9000/usersManager" />
+		</reference>
+
+		<reference name="messagesManager">
+			<interface.java
+				interface="chatserver.message.MessagesManager" />
+			<tuscany:binding.rmi host="localhost" port="8099" serviceName="MessagesManagerRMI" />
+		</reference>
+
+		<reference name="moderationStar">
+			<interface.java interface="moderation.ModerationStar" />
+			<binding.ejb uri="ModerationStarImplRemote" />
+		</reference>
+
+		<reference name="moderationSubs">
+			<interface.java interface="moderation.ModerationSubs" />
+			<binding.ejb uri="ModerationSubsImplRemote" />
+		</reference>
+	</component>
+</composite>

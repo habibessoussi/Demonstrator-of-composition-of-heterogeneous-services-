@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html data-nav-highlight-class-name="highlight-global-nav-home">
+<head>
+
+<title>SCA Chat - Administration panel</title>
+<meta charset="utf-8" />
+<script type="text/javascript" src="index.js"></script>
+<script>
+	//@Reference
+	var admin = new tuscany.sca.Reference("admin");
+
+	admin.disconnectAdmin("admin", null);
+	var connected = false;
+
+	var users = new Array();
+
+	function deleteUser() {
+		var selectedToBeDeleted = document
+				.getElementsByName("deleteuser[name]").item(0).value;
+
+		admin.deleteUser(selectedToBeDeleted, handle_deleteUser);
+
+	}
+	function addUser() {
+		var userToBeAdded = document.getElementsByName("adduser[name]").item(0).value;
+		var passwordToBeAdded = document.getElementsByName(
+				"adduser[user_password]").item(0).value;
+
+		admin.addUser(userToBeAdded, passwordToBeAdded, handle_addUser);
+
+	}
+	function connect() {
+		var adminUserName = document.getElementsByName("session[username]")
+				.item(0).value;
+		
+		var adminPassword = document.getElementsByName("session[password]")
+				.item(0).value;
+
+		if (connected == false)
+			admin.connectAdmin(adminUserName, adminPassword,
+					handle_connectAdmin);
+		else
+			admin.disconnectAdmin(adminUserName, handle_disconnectAdmin);
+
+	}
+
+	//SCA HANDLERS
+	function handle_addUser(feed) {
+		if (feed != 1) {
+			alert('add user failed');
+		}
+		else {
+			admin.getUsers(handle_getUsers);
+			document.getElementsByName("adduser[name]").item(0).value="";
+			document.getElementsByName("adduser[user_password]").item(0).value="";
+			document.getElementsByName("adduser[name]").item(0).focus();
+		}
+	}
+
+	function handle_deleteUser(feed) {
+		var selectedToBeDeleted = document
+				.getElementsByName("deleteuser[name]").item(0).value;
+		var indexToBeDeleted = users.indexOf(selectedToBeDeleted);
+
+		if (feed == 1)
+			admin.getUsers(handle_getUsers);
+		else
+			alert('delete user failed');
+	}
+
+	function handle_getUsers(feed) {
+		if (feed != "") {
+			users = feed.split("\n");
+			document.getElementsByName("deleteuser[name]").item(0).options.length = 0;
+			for ( var i = 0; i < users.length; i++) {
+				if (users[i] != "") {
+					var ligne = new Option(users[i], users[i], false, false);
+					document.getElementsByName("deleteuser[name]").item(0).options[i] = ligne;
+				}
+			}
+		} else {
+			document.getElementsByName("deleteuser[name]").item(0).options.length = 0;
+		}
+	}
+
+	function handle_connectAdmin(feed) {
+		if (feed == 1) {
+			document.getElementById("forms").style.visibility = "visible";
+			document.getElementsByName("session[username]").item(0).disabled = "disabled";
+			document.getElementsByName("session[password]").item(0).disabled = "disabled";
+			document.getElementById("connection")
+					.getElementsByTagName("button").item(0).innerHTML = "Disconnect";
+			connected = true;
+			admin.getUsers(handle_getUsers);
+		} else
+			alert('admin connection failed');
+	}
+
+	function handle_disconnectAdmin() {
+
+		document.getElementById("forms").style.visibility = "hidden";
+		document.getElementsByName("session[username]").item(0).disabled = false;
+		document.getElementsByName("session[password]").item(0).disabled = false;
+		document.getElementById("connection").getElementsByTagName("button")
+				.item(0).innerHTML = "Connect";
+		connected = false;
+
+	}
+
+	//haltrefresh
+	function noRefresh(e) {
+		var val = "K" + e.which;
+		if (val == "K116") {
+			return false;
+		} else {
+			return true;
+		}
+	}
+</script>
+
+<link rel="stylesheet" href="admin_sca.css" type="text/css"
+	media="screen" />
+</head>
+<body class="logged-out front-page" onKeyDown=" return noRefresh(event)">
+	<div id="doc">
+		<div id="page-outer">
+			<div id="front-container">
+				<div class="leftside">
+					<h1>Chat SCA application</h1>
+					<h2>Administration panel</h2>
+					<p>Managing Chat SCA application clients.</p>
+				</div>
+
+				<div class="rightside">
+					<div id="connection" class="front-signin">
+						<form action="javascript:connect()" class="signin" method="post">
+							<fieldset class="textbox">
+								<div class="holding username">
+									<input type="text" name="session[username]"
+										title="Adminstrator username" autocomplete="on" />
+								</div>
+								<div class="holding password">
+									<input type="password" name="session[password]"
+										title="Password" />
+								</div>
+							</fieldset>
+							<fieldset class="subchck">
+								<button type="submit" class="submit button">Connect</button>
+							</fieldset>
+						</form>
+					</div>
+
+					<div id="forms">
+						<div class="front-signup">
+							<h3>Add user</h3>
+							<form action="javascript:addUser()" class="signup signup-btn"
+								method="post">
+								<div class="holding name">
+									<input type="text" autocomplete="off" value=""
+										name="adduser[name]" maxlength="20" />
+								</div>
+								<div class="holding password">
+									<input type="password" value="" name="adduser[user_password]" />
+
+								</div>
+								<input type="submit" class="promotional submit button"
+									value="Add user" />
+
+							</form>
+						</div>
+
+
+						<div class="front-signup" style="margin-top: 160px">
+							<h3>Delete user</h3>
+							<form action="javascript:deleteUser()" class="signup signup-btn"
+								method="post">
+								<div class="holding name">
+									<select name="deleteuser[name]"
+										style="width: 180px; margin-bottom: 20px">
+										<option></option>
+									</select>
+								</div>
+
+								<input type="submit" class="promotional submit button"
+									value="Delete user" />
+
+							</form>
+						</div>
+
+
+					</div>
+				</div>
+
+			</div>
+
+			<div class="bottompart">
+				<div class="footer inline-list">
+					<ul>
+						<li><a
+							href="http://www-tp.it-sudparis.eu/~essoussi/scatutos/doku.php?id=accueil">About
+								us</a><span class="dot divider"> &middot;</span></li>
+						<li><a href="http://www.it-sudparis.eu/fr_accueil.html">TELECOM
+								SudParis</a><span class="dot divider"> &middot;</span></li>
+						<li><a
+							href="mailto:mohamedhabib.essoussi@gmail.com;mohamedsaid.bouksiaa@gmail.com?subject=Admin panel">Contact
+								us</a><span class="dot diviser"> &middot;</span></li>
+						<li>Designed by Twitter<span class="dot diviser">
+								&middot;</span></li>
+
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="homepage-gradient"></div>
+	<div class="homepage-gold-bar"></div>
+
+</body>
+</html>

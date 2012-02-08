@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<composite xmlns="http://www.osoa.org/xmlns/sca/1.0" xmlns:c="http://chatserver"
+	targetNamespace="http://tuscanyscatours.com/" name="chatserver"
+	xmlns:tuscany="http://tuscany.apache.org/xmlns/sca/1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<component name="PythonServerComponent">
+		<tuscany:implementation.script script="chatserver/UsersManagerImpl.py" />
+		
+		<service name="ChatServer">
+			<interface.java interface="chatserver.UsersManager" />
+			<binding.ws uri="http://localhost:9000/usersManager" />
+		</service>
+		<service name="AdminServer">
+			<interface.java interface="chatserver.admin.AdminServer" />
+			<tuscany:binding.jsonrpc uri="/admin" />
+		</service>
+	</component>
+
+
+	<component name="AdminComponent">
+		<tuscany:implementation.widget location="webadmin/index.html" />
+		<service name="Widget">
+			<tuscany:binding.http uri="/webadmin" />
+		</service>
+
+		<reference name="admin" target="PythonServerComponent/AdminServer">
+			<tuscany:binding.jsonrpc />
+		</reference>
+
+	</component>
+	 
+	<component name="JavaServerComponent">
+		<implementation.java class="chatserver.message.MessagesManagerImpl" />
+		<service name="MessagesManager">
+			<interface.java interface="chatserver.message.MessagesManager" />
+			<tuscany:binding.rmi host="localhost" port="8099"
+					serviceName="MessagesManagerRMI" />
+		</service> 
+	</component>
+
+
+</composite>
+

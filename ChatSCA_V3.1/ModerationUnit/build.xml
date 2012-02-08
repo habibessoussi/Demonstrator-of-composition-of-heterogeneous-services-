@@ -1,0 +1,34 @@
+<project name="ModerationUnit" default="compile">
+	<property environment="env" />
+	<property name="build" value="bin" />
+
+	<target name="init" description="init">
+		<mkdir dir="${build}" />
+		<mkdir dir="${build}/META-INF" />
+		<copy todir="${build}/META-INF">
+		    <fileset dir="src/META-INF"/>
+		  </copy>
+	</target>
+
+	<target name="compile" description="compile" depends="init">
+		<delete file="${build}/ModerationUnit.jar" />
+		<echo message=" **************** Compiling project ${ant.project.name} ****************" />
+		<javac classpath="${env.OPENEJB_HOME}/lib/*" srcdir="src/moderation" destdir="${build}" includes="*.java" />
+		<jar jarfile="${build}/ModerationUnit.jar" basedir="${build}" />
+		<javac classpath="${env.OPENEJB_HOME}/lib/*" srcdir="src/moderation/launcher" destdir="${build}" includes="*.java" />
+	</target>
+
+	<target name="run">
+		<java classname="moderation.launcher.OpenEJbLauncher" fork="true">
+			<classpath>
+				<pathelement location="${build}" />
+				<fileset dir="${env.OPENEJB_HOME}/lib" />
+			</classpath>
+		</java>
+	</target>
+
+
+	<target name="clean" description="clean">
+		<delete dir="${build}" />
+	</target>
+</project>

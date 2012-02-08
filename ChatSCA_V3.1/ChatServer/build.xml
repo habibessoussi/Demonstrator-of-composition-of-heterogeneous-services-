@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ChatServer" default="compile">
+
+
+	<property environment="env" />
+
+	<fail unless="env.TUSCANY_HOME">
+    		Error: Please set the TUSCANY_HOME environment
+    		variable.
+    	</fail>
+
+	<property name="composite" value="chatserver.composite" />
+	<property name="build" value="bin" />
+	
+	<target name="init" description="init">
+		<mkdir dir="${build}" />
+		<copy file="${composite}" todir="${build}" />
+		<copy file="src/chatserver/UsersManagerImpl.py" todir="${build}/chatserver" />
+		<copy todir="${build}/webadmin">
+            <fileset dir="src/webadmin"/>
+        </copy>
+	</target>
+
+
+	<target name="compile" description="compile" depends="init">
+		<echo message=" **************** Compiling project ${ant.project.name} ****************" />
+		<javac classpath="${env.TUSCANY_HOME}/lib/tuscany-sca-manifest.jar" srcdir="src/chatserver/message" destdir="${build}" includes="*.java" />
+		<javac classpath="${env.TUSCANY_HOME}/lib/tuscany-sca-manifest.jar" srcdir="src/chatserver" destdir="${build}" includes="*.java" />
+		<javac classpath="${env.TUSCANY_HOME}/lib/tuscany-sca-manifest.jar" srcdir="src/chatserver/admin" destdir="${build}" includes="*.java" />
+		<javac classpath="${env.TUSCANY_HOME}/lib/tuscany-sca-manifest.jar" srcdir="src/chatserver/launcher" destdir="${build}" includes="*.java" />
+
+		<antcall target="startDomain" />
+	</target>
+
+	<target name="startDomain">
+		<java classname="chatserver.launcher.ChatServerLauncher" fork="true" failonerror="true">
+			<arg value="-h" />
+			<classpath>
+				<pathelement location="${env.TUSCANY_HOME}/lib/tuscany-sca-manifest.jar" />
+				<pathelement location="${build}" />
+				<pathelement path="${java.class.path}" />
+			</classpath>
+		</java>
+	</target>
+
+
+	<target name="clean" description="clean">
+		<delete dir="${build}" />
+	</target>
+</project>
+

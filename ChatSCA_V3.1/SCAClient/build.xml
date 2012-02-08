@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ClientComposite" default="compile">
+
+
+	<property environment="env" />
+
+	<fail unless="env.TUSCANY_HOME">
+		Error: Please set the TUSCANY_HOME environment
+		variable.
+	</fail>
+
+	<property name="wslink"
+		value="http://localhost:9000/usersManager?wsdl" />
+	
+	<property name="composite" value="client.composite" />
+	<property name="build" value="bin" />
+
+	<target name="init" description="init">
+		<mkdir dir="generated" />
+		<mkdir dir="${build}" />
+		<copy file="${composite}" todir="${build}" />
+		<antcall target="wsdlimport" />
+	</target>
+
+	<target name="wsdlimport">
+		<exec executable="${java.home}/../bin/wsimport">
+			<arg line="${wslink} -d ${build} -s generated -keep" />
+		</exec>
+		
+	</target>
+
+	<target name="compile" description="compile" depends="init">
+		<echo
+			message=" **************** Compiling project ${ant.project.name} ****************" />
+			<javac classpath="${env.OPENEJB_HOME}/lib"
+					srcdir="src/moderation" destdir="${build}" includes="*.java" />
+		<javac classpath="${env.OPENEJB_HOME}/lib"
+							srcdir="src/chatserver/message" destdir="${build}" includes="*.java" />	
+		<javac classpath="${env.TUSCANY_HOME}/lib/tuscany-sca-manifest.jar"
+			srcdir="generated/chatserver" destdir="${build}" includes="*.java" />
+		<javac classpath="${env.TUSCANY_HOME}/lib/tuscany-sca-manifest.jar"
+			srcdir="src/sca/client" destdir="${build}" includes="*.java" />
+		<javac classpath="${env.TUSCANY_HOME}/lib/tuscany-sca-manifest.jar"
+					srcdir="src/sca/client/launcher" destdir="${build}" includes="*.java" />
+			
+		
+		<antcall target="startDomain" />
+	</target>
+
+
+	<target name="startDomain">
+		<java classname="sca.client.launcher.ChatLauncher" fork="true"
+			failonerror="true">
+			<arg value="-h" />
+			<classpath>
+				<pathelement location="${env.TUSCANY_HOME}/lib/tuscany-sca-manifest.jar" />
+				<pathelement location="${build}" />
+				<pathelement path="${java.class.path}" />
+				<fileset dir="${env.OPENEJB_HOME}/lib" />
+			</classpath>
+		</java>
+	</target>
+
+	<target name="clean" description="clean">
+		<delete dir="${build}" />
+
+	</target>
+</project>
