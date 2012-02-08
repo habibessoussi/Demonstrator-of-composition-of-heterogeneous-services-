@@ -1,5 +1,10 @@
-                ABSTRACT
-===================================================================================
+       
+**Master-Level project:**
+Demonstrator of composition of heteregenous services with SCA
+=============================================================
+
+ABSTRACT
+--------
 Relatively a new technology, SCA architecture through its 
 implementation Apache Tuscany will be thoroughly tested by 
 a wide-range of demos which will explore the limits of its 
@@ -8,10 +13,9 @@ communication protocols) components.  This project aims then to
 discover first this technology, second to test it through simple
 examples and finally to develop an application, in this case a 
 Chat Application, responding to SCA requirements. 
- 
 
-             REPOSITORY
-===================================================================================
+REPOSITORY
+----------
 1) ChatSCA_V3.1: The project folder of the last stable version
                  of ChatSCA application
                  
@@ -24,9 +28,9 @@ Chat Application, responding to SCA requirements.
                  in frensh language.
                  
                  
-           LICENCE  
-===================================================================================
+LICENCE
+--------
 The lib is available under MIT Licence :
-(http://www.opensource.org/licenses/MIT, "MIT Licence")
+http://www.opensource.org/licenses/MIT
 
                  
