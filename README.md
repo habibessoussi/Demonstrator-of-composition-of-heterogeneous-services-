@@ -1,10 +1,10 @@
        
 **Master-Level project:**
-<center>Demonstrator of composition of heteregenous services with SCA</center>
+Demonstrator of composition of heteregenous services with SCA
 =============================================================
 
-ABSTRACT
---------
+##ABSTRACT
+
 Relatively a new technology, SCA architecture through its 
 implementation Apache Tuscany will be thoroughly tested by 
 a wide-range of demos which will explore the limits of its 
@@ -28,8 +28,8 @@ Chat Application, responding to SCA requirements.
                  in frensh language.
                  
                  
-LICENCE
---------
+##LICENCE
+
 The lib is available under MIT Licence :
 http://www.opensource.org/licenses/MIT
 
