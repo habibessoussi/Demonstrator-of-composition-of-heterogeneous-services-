@@ -9,14 +9,14 @@ Chat SCA application is our main heterogeneity demonstrator. It’s an applicati
 ##Architecture
 
 The architecture of the application is described as below:
-+  **Chat server composite**: includes 3 components
-++ *Messages Manager*: implemented in Java, provides messages management services that are exposed over Java RMI to the client
-++ *Users Manager*: implemented in python, provides users management services that are exposed under JSON-RPC to the administration component and a connection/disconnection service to the client under SOA protocol.
-++ *Administration component*: written in JavaScript. It’s a web based application that adds, removes members to/from the chat room.
-+  *Moderation Unit*: includes 2 EJB components that are deployed in their EJB Container (Apache OpenEJB)
-++ *ModerationStarImplRemote*: a component that removes bad words and substitute them by stars (*)
-++ *ModerationSubsImplRemote*: a component that substitutes the SMS/Geek words by conventional words. 
-+  **Client**: A client written in Java that uses 4 references of services: messages manager, users’ manager, and the 2 components of the moderation unit.
+1.  **Chat server composite**: includes 3 components
++  *Messages Manager*: implemented in Java, provides messages management services that are exposed over Java RMI to the client
++  *Users Manager*: implemented in python, provides users management services that are exposed under JSON-RPC to the administration component and a connection/disconnection service to the client under SOA protocol.
++  *Administration component*: written in JavaScript. It’s a web based application that adds, removes members to/from the chat room.
+2.  *Moderation Unit*: includes 2 EJB components that are deployed in their EJB Container (Apache OpenEJB)
++  *ModerationStarImplRemote*: a component that removes bad words and substitute them by stars (*)
++  *ModerationSubsImplRemote*: a component that substitutes the SMS/Geek words by conventional words. 
+3.  **Client**: A client written in Java that uses 4 references of services: messages manager, users’ manager, and the 2 components of the moderation unit.
  
 
 ##run
