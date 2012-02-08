@@ -26,7 +26,7 @@ The architecture of the application is described as below:
 
 First of all, assure that you have installed properly Tuscany and 
 that you have positioned properly the variable of environment 
-TUSCANY_HOME, otherwise , Ant will declare a "fail".
+`TUSCANY_HOME`, otherwise , Ant will declare a "fail".
 
 It is imperative that you respect the order which follows:
     1. ChatServer
@@ -35,7 +35,7 @@ It is imperative that you respect the order which follows:
 
 
 ###Installation
-1. Bien positionner la variable d'environnement TUSCANY_HOME
+1. Bien positionner la variable d'environnement `TUSCANY_HOME`
 2. `cd $YOUR_WORKSPACE/ChatSCA_V3.1/ChatServer`
 3. `ant`
 4. (new terminal)
