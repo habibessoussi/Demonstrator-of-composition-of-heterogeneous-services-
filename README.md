@@ -1,6 +1,6 @@
        
 **Master-Level project:**
-Demonstrator of composition of heteregenous services with SCA
+<center>Demonstrator of composition of heteregenous services with SCA</center>
 =============================================================
 
 ABSTRACT
