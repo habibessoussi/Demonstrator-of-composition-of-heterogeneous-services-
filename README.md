@@ -28,9 +28,14 @@ Chat Application, responding to SCA requirements.
                  in frensh language.
                  
                  
-##LICENCE
+##LICENCES
 
-The lib is available under MIT Licence :
+* The lib is available under MIT Licence :
 http://www.opensource.org/licenses/MIT
+
+* ![BY](http://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Cc-by_new_white.svg/48px-Cc-by_new_white.svg.png "BY")
+  ![CC](http://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Cc-sa_white.svg/48px-Cc-sa_white.svg.png "CC")
+  Report and its Appendix are licenced under CC BY-SA :
+  http://creativecommons.org/licenses/by-sa/3.0/
 
                  
