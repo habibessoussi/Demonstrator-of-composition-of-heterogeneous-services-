@@ -1,8 +1,6 @@
-Demonstrator of composition of heterogeneous services with SCA
+Demonstrator of composition of heterogeneous services with SCA: Chat SCA
 =======================================================================
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Chat SCA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 ##Description
 
@@ -20,91 +18,6 @@ Chat server composite: includes 3 components
 *ModerationSubsImplRemote: a component that substitutes the SMS/Geek words by conventional words. 
 *Client: A client written in Java that uses 4 references of services: messages manager, users’ manager, and the 2 components of the moderation unit.
  
-
-##Arborescence
-
-├── ChatServer
-│   ├── build.xml
-│   ├── chatserver.composite
-│   ├── resources
-│   │   ├── admin.txt
-│   │   └── users.txt
-│   └── src
-│       ├── chatserver
-│       │   ├── admin
-│       │   │   ├── AdminServer.java
-│       │   │   └── package-info.java
-│       │   ├── launcher
-│       │   │   ├── ChatServerLauncher.java
-│       │   │   └── package-info.java
-│       │   ├── message
-│       │   │   ├── Messages.java
-│       │   │   ├── MessagesManagerImpl.java
-│       │   │   ├── MessagesManager.java
-│       │   │   └── package-info.java
-│       │   ├── package-info.java
-│       │   ├── UsersManagerImpl.py
-│       │   └── UsersManager.java
-│       └── webadmin
-│           ├── admin_sca.css
-│           ├── images
-│           │   ├── bg-btn.gif
-│           │   └── bg.png
-│           └── index.html
-├── ModerationUnit
-│   ├── build.xml
-│   └── src
-│       ├── META-INF
-│       │   └── ejb-jar.xml
-│       └── moderation
-│           ├── launcher
-│           │   ├── OpenEJbLauncher.java
-│           │   └── package-info.java
-│           ├── ModerationImpl.java
-│           ├── Moderation.java
-│           ├── ModerationStarImpl.java
-│           ├── ModerationStar.java
-│           ├── ModerationSubsImpl.java
-│           ├── ModerationSubs.java
-│           ├── package-info.java
-│           └── test
-│               ├── package-info.java
-│               └── Tests.java
-├── README.md
-└── SCAClient
-    ├── build.xml
-    ├── client.composite
-    ├── generated
-    │   └── chatserver
-    │       ├── Connect.java
-    │       ├── ConnectResponse.java
-    │       ├── Disconnect.java
-    │       ├── DisconnectResponse.java
-    │       ├── ObjectFactory.java
-    │       ├── package-info.java
-    │       ├── UsersManager.java
-    │       └── UsersManagerService.java
-    ├── resources
-    │   └── tuscany.png
-    └── src
-        ├── chatserver
-        │   └── message
-        │       ├── Messages.java
-        │       ├── MessagesManager.java
-        │       └── package-info.java
-        ├── moderation
-        │   ├── Moderation.java
-        │   ├── ModerationStar.java
-        │   ├── ModerationSubs.java
-        │   └── package-info.java
-        └── sca
-            └── client
-                ├── ChatClient.java
-                ├── launcher
-                │   ├── ChatLauncher.java
-                │   └── package-info.java
-                └── package-info.java
-
 
 ##run
 
@@ -125,14 +38,26 @@ It is imperative that you respect the order which follows:
 
 ###Installation
 1. Bien positionner la variable d'environnement TUSCANY_HOME
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 2. cd $YOUR_WORKSPACE/ChatSCA_V3.1/ChatServer
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 3. ant
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 4. (new terminal)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    cd $YOUR_WORKSPACE/ChatSCA_V3.1/ModerationUnit
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   
 5. ant compile run
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 6. (new terminal)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     cd $VOTRE_WORKSPACE/ChatSCA_V2.2.1/SCAClient
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 7. ant
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 8. Copy the following link to your browser:
     localhost:8080/webadmin/
 9. Connect as administrator through this web panel:
@@ -150,8 +75,9 @@ It is imperative that you respect the order which follows:
 ###clean
 
 You have just to write 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ant clean
-===============================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 at the level of each of these directories: ChatServer, ModerationUnit and SCAClient
 
 
